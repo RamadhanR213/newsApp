@@ -5,17 +5,12 @@ import NewsCard from '../components/NewsCard';
 
 const Saved = () => {
   const [savedArticles, setSavedArticles] = useState([]);
-  const savedNews = useSelector((state) => state.savedNews.items);
+  const savedNews = useSelector((state) => state.savedNews.items); 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchSavedArticles = () => {
-      const articles = savedNews;
-      setSavedArticles(articles);
-    };
-
-    fetchSavedArticles();
-  }, [savedNews]); 
+    setSavedArticles(savedNews);
+  }, [savedNews]);
 
   const handleToggleSave = (article) => {
     dispatch(unsaveNews(article)); 
@@ -30,8 +25,8 @@ const Saved = () => {
             <div key={index} className="col-12 col-md-6 col-lg-4 mb-4">
               <NewsCard
                 article={article}
-                isSaved={true}  
-                onToggleSave={handleToggleSave}  
+                isSaved={true} 
+                onToggleSave={handleToggleSave} 
               />
             </div>
           ))

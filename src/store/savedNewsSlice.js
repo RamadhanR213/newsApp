@@ -7,7 +7,7 @@ const savedNewsSlice = createSlice({
   },
   reducers: {
     saveNews: (state, action) => {
-      state.items.push(action.payload);
+      state.items.push(action.payload); 
       localStorage.setItem('savedNews', JSON.stringify(state.items)); 
     },
     unsaveNews: (state, action) => {
