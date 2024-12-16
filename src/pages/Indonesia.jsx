@@ -6,11 +6,12 @@ import NewsCard from '../components/NewsCard';
 
 const Indonesia = () => {
   const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
   const savedNews = useSelector((state) => state.savedNews.items); 
   const dispatch = useDispatch();
 
   useEffect(() => {
-
     axios
       .get('https://api.nytimes.com/svc/search/v2/articlesearch.json', {
         params: {
@@ -23,6 +24,10 @@ const Indonesia = () => {
       })
       .catch((error) => {
         console.error('Error fetching Indonesia news:', error);
+        setError('Failed to fetch Indonesia news.');
+      })
+      .finally(() => {
+        setLoading(false); 
       });
   }, []);
 
@@ -38,6 +43,9 @@ const Indonesia = () => {
   return (
     <div className="container mt-4">
       <h2>Indonesia News</h2>
+      {loading && <p>Loading news...</p>} 
+      {error && <p className="text-danger">{error}</p>} 
+      {!loading && news.length === 0 && <p>No news available.</p>} 
       <div className="row">
         {news.map((article, index) => (
           <div key={index} className="col-12 col-md-6 col-lg-4 mb-4">
