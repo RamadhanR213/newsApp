@@ -50,7 +50,7 @@ const Search = () => {
 
   return (
     <div className="container mt-4">
-      <h2>Hasil Pencarian: "{query}"</h2>
+      <h2>Search Result: "{query}"</h2>
 
       {loading && <p>Loading news...</p>}
       {error && <p className="text-danger">{error}</p>}
@@ -68,7 +68,7 @@ const Search = () => {
           ))}
         </div>
       ) : (
-        <p>Tidak ada berita ditemukan.</p>
+        <p>No Articles Found.</p>
       )}
     </div>
   );
